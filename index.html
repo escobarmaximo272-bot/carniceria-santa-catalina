@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnicería Santa Catalina | Envíos y Pedidos</title>
+    <meta name="description" content="La mejor carne cruda y fresca en Resistencia, Chaco. Cortes tradicionales, achuras y envíos a todo el país.">
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --color-primary: #a30000;
+            --color-primary-dark: #5c0000;
+            --color-dark: #0a0a0a;
+            --color-card-bg: #141414;
+            --color-text: #e0e0e0;
+            --color-text-muted: #a0a0a0;
+            --color-white: #ffffff;
+            --mp-blue: #009EE3;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-subheading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-dark);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-white);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            box-shadow: 0 4px 15px rgba(163, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(163, 0, 0, 0.6);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title span {
+            font-family: var(--font-subheading);
+            font-style: italic;
+            text-transform: none;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+        }
+
+        section { padding: 4rem 0; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse-whatsapp 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.8);
+            background-color: #128C7E;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% { box-shadow: 0 0 20px rgba(37, 211, 102, 0.6); }
+            50% { box-shadow: 0 0 40px rgba(37, 211, 102, 0.8); }
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        header.scrolled { padding: 0.5rem 0; background: rgba(10, 10, 10, 0.95); }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--color-white);
+            letter-spacing: -1px;
+        }
+        .logo span { color: var(--color-primary); font-style: italic; }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 0; background-color: var(--color-primary); transition: var(--transition);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        .burger { display: none; cursor: pointer; font-size: 1.5rem; color: white; z-index: 1001; }
+
+        /* Hero */
+        #hero {
+            height: 100vh;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            font-family: var(--font-subheading);
+            font-style: italic;
+            font-weight: 700;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            margin-bottom: 10px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-badge {
+            background: rgba(163,0,0,0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* Productos */
+        #productos { background-color: var(--color-dark); position: relative; }
+        
+        #productos::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(163,0,0,0.08) 0%, transparent 50%);
+            z-index: 0; pointer-events: none;
+        }
+
+        .filter-container {
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; 
+            margin-bottom: 2rem; position: relative; z-index: 1; padding: 0 1rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--color-text-muted);
+            padding: 0.6rem 1.25rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--color-white);
+            color: var(--color-dark);
+            border-color: var(--color-white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 1.5rem;
+            position: relative; z-index: 1;
+            padding: 0 1rem;
+        }
+
+        .product-card {
+            background-color: var(--color-card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .product-image-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .product-image {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover .product-image { transform: scale(1.1); }
+
+        .product-badge {
+            position: absolute; top: 0.75rem; left: 0.75rem;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            color: white; padding: 0.3rem 0.75rem;
+            border-radius: 4px; font-size: 0.65rem;
+            text-transform: uppercase; font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .product-info { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; }
+
+        .product-title { font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600; }
+        .product-desc { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem; flex-grow: 1; }
+
+        .shipping-tag {
+            font-size: 0.75rem; color: var(--mp-blue); margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 0.3rem; font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.1rem; color: var(--color-primary); font-weight: 800; margin-bottom: 1rem; display: block;
+        }
+
+        .product-actions { display: flex; flex-direction: column; gap: 0.625rem; }
+
+        .btn-enviar-pedido, .btn-consultar {
+            width: 100%; text-align: center; padding: 0.75rem; border-radius: 8px;
+            font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.625rem;
+            transition: var(--transition); text-transform: uppercase; font-size: 0.8rem; border: none; cursor: pointer;
+        }
+
+        .btn-enviar-pedido { background-color: #25D366; color: white; }
+        .btn-enviar-pedido:hover { background-color: #1ebc57; transform: translateY(-2px); }
+
+        .btn-consultar {
+            background-color: transparent; color: var(--color-text-muted);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-consultar:hover { background-color: rgba(255,255,255,0.05); color: var(--color-white); transform: translateY(-2px); }
+
+        /* Precios */
+        #precios { background-color: #0f0f0f; }
+
+        .price-table-wrapper {
+            background: var(--color-card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th {
+            background-color: #1a1a1a;
+            color: var(--color-primary);
+            padding: 1rem; text-align: left; font-weight: 700;
+            text-transform: uppercase; font-size: 0.8rem; white-space: nowrap;
+        }
+        td {
+            padding: 0.9rem 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--color-text);
+            font-size: 0.8rem;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: rgba(255,255,255,0.02); }
+
+        /* Contacto */
+        #contacto { background-color: var(--color-dark); }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .info-box {
+            display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
+            padding: 1rem; background: rgba(255,255,255,0.03);
+            border-radius: 12px; border-left: 3px solid var(--color-primary);
+        }
+
+        .info-box i { font-size: 1.2rem; color: var(--color-white); flex-shrink: 0; }
+        
+        .map-container {
+            width: 100%; height: clamp(250px, 50vw, 400px);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid rgba(255,255,255,0.1);
+            filter: grayscale(80%) contrast(1.2);
+            transition: var(--transition);
+        }
+        .map-container:hover { filter: grayscale(0%) contrast(1); }
+
+        input, textarea, select {
+            width: 100%; padding: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white; border-radius: 8px;
+            font-family: var(--font-body);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: var(--color-primary); background: rgba(255,255,255,0.08);
+        }
+
+        footer {
+            background: #000; padding: 2.5rem 0; text-align: center; border-top: 1px solid #222;
+        }
+
+        /* Modal */
+        #pedido-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            z-index: 2000; display: none; justify-content: center; align-items: center; padding: 1rem;
+        }
+
+        #pedido-modal.active { display: flex; }
+
+        .modal-content-pedido {
+            background: var(--color-card-bg); width: 100%; max-width: 500px; max-height: 90vh;
+            overflow-y: auto; padding: 1.5rem; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1); position: relative;
+            animation: slideUp 0.4s ease; margin: 1rem;
+        }
+
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .close-modal-pedido {
+            position: absolute; top: 0.75rem; right: 0.75rem;
+            font-size: 1.5rem; color: var(--color-text-muted); cursor: pointer; transition: 0.3s;
+        }
+        .close-modal-pedido:hover { color: var(--color-primary); transform: rotate(90deg); }
+
+        .modal-header-pedido {
+            text-align: center; margin-bottom: 1.5rem; padding-bottom: 1.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-header-pedido h2 { font-size: 1.4rem; color: var(--color-primary); margin-bottom: 10px; }
+        .modal-header-pedido p { color: var(--color-text-muted); font-size: 0.9rem; }
+        .modal-header-pedido i { font-size: 2rem; margin-bottom: 10px; color: var(--color-primary); }
+
+        .form-group-pedido { margin-bottom: 1.25rem; }
+        .form-group-pedido label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--color-white); font-size: 0.9rem; }
+        .form-group-pedido .required { color: var(--color-primary); }
+        .form-group-pedido textarea { resize: vertical; min-height: 80px; }
+        
+        .form-group-pedido input.readonly-price {
+            background: rgba(163, 0, 0, 0.1) !important;
+            border-color: var(--color-primary) !important;
+            color: var(--color-primary) !important;
+            font-weight: 700; font-size: 1.1rem; cursor: not-allowed; text-align: center;
+        }
+
+        .product-info-box {
+            background: rgba(163, 0, 0, 0.1);
+            border-left: 3px solid var(--color-primary);
+            padding: 1rem; border-radius: 8px; margin-bottom: 1.25rem;
+        }
+
+        .product-info-box h4 { color: var(--color-primary); font-size: 0.9rem; margin-bottom: 8px; }
+        .product-info-box p { color: var(--color-text); font-size: 0.85rem; line-height: 1.5; }
+
+        .price-inputs { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+        .total-display-pedido {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white; padding: 1.25rem; border-radius: 10px; text-align: center; margin: 1.25rem 0;
+        }
+
+        .total-display-pedido h3 { font-size: 0.9rem; margin-bottom: 5px; opacity: 0.9; }
+        .total-display-pedido .total-amount { font-size: 1.5rem; font-weight: 700; }
+
+        .submit-pedido-btn {
+            width: 100%; padding: 1rem;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white; border: none; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; gap: 0.625rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .submit-pedido-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+        }
+
+        .error-message-pedido { color: #dc3545; font-size: 0.75rem; margin-top: 5px; display: none; }
+        .form-group-pedido input.error, .form-group-pedido select.error, .form-group-pedido textarea.error { border-color: #dc3545 !important; }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            h1 { font-size: 2rem; } h2 { font-size: 1.4rem; } h3 { font-size: 1.1rem; }
+            .whatsapp-float { bottom: 20px; left: 20px; width: 55px; height: 55px; font-size: 26px; }
+            .hero-content h1 { font-size: 2rem; } .hero-content p { font-size: 1.1rem; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 85%; max-width: 300px;
+                height: 100vh; background: #0a0a0a; flex-direction: column;
+                justify-content: center; align-items: center; transition: 0.4s ease; z-index: 999;
+                border-left: 1px solid #333; padding: 2rem 0;
+            }
+            .nav-links.active { right: 0; }
+            .burger { display: flex; align-items: center; justify-content: center; z-index: 1000; }
+            .products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .modal-content-pedido { width: 95%; max-height: 85vh; padding: 1.25rem; margin: 1rem; }
+            .price-table-wrapper { border-radius: 12px; }
+            th, td { padding: 0.6rem 0.8rem; font-size: 0.75rem; white-space: normal; }
+            .map-container { height: 200px; }
+            .info-box { font-size: 0.85rem; }
+            .hero-badge { font-size: 0.75rem; padding: 0.5rem 0.75rem; gap: 0.4rem; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .price-inputs { grid-template-columns: 1fr; }
+            .modal-content-pedido { margin: 0; }
+        }
+
+        @media (min-width: 1025px) {
+            .contact-container { grid-template-columns: 1fr 1fr; }
+            .products-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+            .modal-content-pedido { margin: 0; }
+            .container { padding: 0 1.5rem; }
+            section { padding: 6rem 0; }
+            h1 { font-size: 4.5rem; } h2 { font-size: 1.8rem; } h3 { font-size: 1.3rem; }
+            .product-title { font-size: 1.3rem; } .product-price { font-size: 1.4rem; }
+            input, button, textarea, select { font-size: 0.9rem; padding: 0.75rem; border-radius: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">CARNICERÍA <span>SANTA CATALINA</span></a>
+            <div class="burger" id="burger-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#productos">Cortes</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#contacto">Ubicación</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <p>La Tradición en Resistencia</p>
+            <h1>CARNICERÍA SANTA CATALINA</h1>
+            <p>Los mejores de la carne en Resistencia</p>
+            <div class="hero-badges">
+                <div class="hero-badge"><i class="fas fa-truck"></i> Envíos </div>
+                <div class="hero-badge"><i class="fas fa-store"></i> Retiro en local</div>
+            </div>
+        </div>
+        <div class="scroll-hint">Toca para explorar</div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos">
+        <div class="container">
+            <div class="section-title reveal">
+                <span>Frescura Diaria</span>
+                Nuestros Cortes
+            </div>
+
+            <div class="filter-container reveal">
+                <button class="filter-btn active" onclick="filterProducts('all')">Todos</button>
+                <button class="filter-btn" onclick="filterProducts('vacuna')">Vacuna</button>
+                <button class="filter-btn" onclick="filterProducts('achuras')">Achuras</button>
+                <button class="filter-btn" onclick="filterProducts('cerdo')">Cerdo</button>
+                <button class="filter-btn" onclick="filterProducts('pollo')">Pollo</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Precios -->
+    <section id="precios">
+        <div class="container">
+            <div class="section-title reveal">
+                <span>Transparencia</span>
+                Lista de Precios
+            </div>
+            <div class="price-table-wrapper reveal">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Corte</th>
+                            <th>Detalle</th>
+                            <th>Precio x Kilo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="priceTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <div class="container">
+            <div class="section-title reveal">
+                <span>Visitanos</span>
+                Ubicación y Contacto
+            </div>
+            <div class="contact-container reveal">
+                <div>
+                    <div class="info-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>718 C. Zorrilla León<br>Resistencia, Provincia del Chaco</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Teléfono / WhatsApp</h4>
+                            <p>+54 9 362 465-7890</p>
+                        </div>
+                    </div>
+                    <form onsubmit="event.preventDefault(); alert('Gracias por tu mensaje. Te contactaremos pronto.');">
+                        <input type="text" placeholder="Tu Nombre" required>
+                        <input type="tel" placeholder="Tu Teléfono" required>
+                        <textarea rows="4" placeholder="¿Qué estás buscando?"></textarea>
+                        <button class="btn">Enviar Consulta</button>
+                    </form>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=C.+Zorrilla+Le%C3%B3n+718%2C+Resistencia%2C+Chaco&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">CARNICERÍA SANTA CATALINA</p>
+            <p style="color: #666; font-size: 0.75rem;">&copy;2023 Carnicería Santa Catalina. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5493624657890?text=Hola,%20quiero%20hacer%20un%20pedido" class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal de Pedido -->
+    <div id="pedido-modal">
+        <div class="modal-content-pedido">
+            <span class="close-modal-pedido" onclick="cerrarModalPedido()">×</span>
+            <div class="modal-header-pedido">
+                <i class="fas fa-utensils"></i>
+                <h2>🥩 Hacer Pedido</h2>
+                <p>Completa el formulario y envía tu pedido</p>
+            </div>
+            <div class="product-info-box">
+                <h4>📍 Producto seleccionado:</h4>
+                <p><strong>Corte:</strong> <span id="modal-producto-nombre">Bife de Chorizo</span></p>
+                <p><strong>Tipo:</strong> <span id="modal-producto-tipo">Vacuna</span></p>
+                <p><strong>Precio base:</strong> $<span id="modal-producto-precio">9.500</span> / kg</p>
+            </div>
+            <form id="pedidoForm">
+                <div class="form-group-pedido">
+                    <label for="nombre">Nombre <span class="required">*</span></label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                    <div class="error-message-pedido">Por favor ingresa tu nombre</div>
+                </div>
+                <div class="form-group-pedido">
+                    <label for="telefono">Teléfono <span class="required">*</span></label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="Tu número de teléfono">
+                    <div class="error-message-pedido">Por favor ingresa tu teléfono</div>
+                </div>
+                <div class="form-group-pedido">
+                    <label for="direccion">Dirección <span class="required">*</span></label>
+                    <input type="text" id="direccion" name="direccion" required placeholder="Calle, número, piso, departamento">
+                    <div class="error-message-pedido">Por favor ingresa tu dirección</div>
+                </div>
+                <div class="form-group-pedido">
+                    <label for="ubicacion">Referencia o ubicación</label>
+                    <textarea id="ubicacion" name="ubicacion" placeholder="Entre calles, puntos de referencia, color de la puerta, etc."></textarea>
+                </div>
+                <div class="price-inputs">
+                    <div class="form-group-pedido">
+                        <label for="cantidad">Cantidad (kg) <span class="required">*</span></label>
+                        <input type="number" id="cantidad" name="cantidad" required min="0.1" step="0.1" placeholder="Ej: 2.5" oninput="calcularTotal()">
+                        <div class="error-message-pedido">Por favor ingresa la cantidad</div>
+                    </div>
+                    <div class="form-group-pedido">
+                        <label for="precio">Precio por kg (ARS$) <span class="required">*</span></label>
+                        <input type="number" id="precio" name="precio" class="readonly-price" readonly>
+                    </div>
+                </div>
+                <div class="total-display-pedido">
+                    <h3>💰 Total a pagar:</h3>
+                    <div class="total-amount">$0</div>
+                </div>
+                <div class="form-group-pedido">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea id="observaciones" name="observaciones" placeholder="Algún detalle importante sobre tu pedido"></textarea>
+                </div>
+                <button type="submit" class="submit-pedido-btn">
+                    <i class="fas fa-paper-plane"></i> Enviar pedido
+                </button>
+                <p style="font-size: 0.75rem; color: #666; text-align: center; margin-top: 10px;">
+                    Serás redirigido a WhatsApp para enviar tu pedido.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Lista de productos con las últimas actualizaciones
+        const productos = [
+            // VACUNA
+            {
+                nombre: "Corte Americano",
+                categoria: "vacuna",
+                precio: 14000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858370/corte_americano_eyylyn.png",
+                descripcion: "Corte tierno con gran infiltración de grasa. Excelente a la parrilla.",
+                badge: "Premium"
+            },
+            {
+                nombre: "Milanesa",
+                categoria: "vacuna",
+                precio: 9500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853101/milanesa_zecyer.jpg",
+                descripcion: "Bisteck fino perfecto para empanar o comer a la plancha.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Bife de Chorizo",
+                categoria: "vacuna",
+                precio: 9500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858371/bife_de_choriso_oosrpw.png",
+                descripcion: "Corte clásico, tierno y sabroso. Perfecto para asado rápido.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Cuadril",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858371/cuadril_se8gbb.png",
+                descripcion: "Corte versátil. Se puede despostar en bifes o asar entero.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Cuadrada",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858563/Gemini_Generated_Image_65j9r365j9r365j9_tqlfvg.png",
+                descripcion: "Corte delantero. Ideal para milanesas o picadillo.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Redonda",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858370/redonda_duxkjr.png",
+                descripcion: "Corte delantero. Perfecta para estofados y pucheros.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Peceto",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853108/WhatsApp_Image_2026-01-31_at_2.35.07_PM_peceto_yquevm.jpg",
+                descripcion: "Para matambrito o al horno con verduras.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Nalga",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853108/WhatsApp_Image_2026-01-31_at_2.37.09_PM_nalga_rd3u2h.jpg",
+                descripcion: "Ideal para milanesas o bifes de cazuela.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Pulpa Paleta",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856670/pulpa_h20xiz.png",
+                descripcion: "Corte magro de la paleta. Excelente calidad.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Lomito",
+                categoria: "vacuna",
+                precio: 8000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856671/lomito_qsvoam.png",
+                descripcion: "Corte tierno ideal para sandwiches o bifes pequeños.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Costelet",
+                categoria: "vacuna",
+                precio: 7000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856671/Gemini_Generated_Image_r2ze2pr2ze2pr2zecosteleta_g2ptxa.png",
+                descripcion: "Hueso con carne, ideal para asado con hueso.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Costilla",
+                categoria: "vacuna",
+                precio: 6500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853108/WhatsApp_Image_2026-01-31_at_2.35.58_PM_costilla_baca_uo5tkr.jpg",
+                descripcion: "Para hacer al disco o a la parrilla.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Osobuco",
+                categoria: "vacuna",
+                precio: 8000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856671/Gemini_Generated_Image_tkgaqutkgaqutkgaosubuco_ntxx12.png",
+                descripcion: "Hueso con tuétano. Exquisito para guisos tradicionales.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Vacío",
+                categoria: "vacuna",
+                precio: 10000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853106/vacio..._kkhi0u.jpg",
+                descripcion: "Ideal para matambre relleno o a la cruz con buena cocción.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Matambre",
+                categoria: "vacuna",
+                precio: 8000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853098/ChatGPT_Image_11_feb_2026_matambre17_39_05_fmmxgg.png",
+                descripcion: "Relleno o a la parrilla. Carnes tiernas.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Sobreas",
+                categoria: "vacuna",
+                precio: 5000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858372/sobreasado_ei9y7e.png",
+                descripcion: "Receta tradicional ideal para asados familiares.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Molida Especial",
+                categoria: "vacuna",
+                precio: 8000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856672/molida_especial_r7notg.png",
+                descripcion: "Mezcla premium ideal para hamburguesas y bolognesa.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Molida Común",
+                categoria: "vacuna",
+                precio: 5000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856672/molida_comun_vw8gzh.png",
+                descripcion: "Carne picada fresca ideal para todos los guisos.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Hamburguesa",
+                categoria: "vacuna",
+                precio: 7500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853095/cane_hambur_tquhn1.jpg",
+                descripcion: "Prepapas de hamburguesa caseras.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Puchero Común",
+                categoria: "vacuna",
+                precio: 7500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853103/puchero_yazaf9.jpg",
+                descripcion: "Mezcla de huesos y carne para guiso completo.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Lomo",
+                categoria: "vacuna",
+                precio: 9200,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853100/lomo_ug1ztl.jpg",
+                descripcion: "El corte más tierno y magro. Ideal para milanesas.",
+                badge: "Premium"
+            },
+            {
+                nombre: "Ojo de Bife",
+                categoria: "vacuna",
+                precio: 8800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853101/ojo_de_bife_lp9nrl.jpg",
+                descripcion: "Corte jugoso con malla de grasa central.",
+                badge: "Premium"
+            },
+            {
+                nombre: "Tira de Asado",
+                categoria: "vacuna",
+                precio: 6800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853096/ChatGPT_Image_11_feb_2026_05_30_57_tira_de_asadop.m._kbk0vq.png",
+                descripcion: "El clásico del domingo. Costillar sabor intenso.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Entraña",
+                categoria: "vacuna",
+                precio: 8900,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853096/ChatGPT_Image_11_feb_2026_05_38_28entra%C3%B1a_p.m._tbedla.png",
+                descripcion: "Corte fibroso y gustoso. Fuego alto y rápido.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Bola de Lomo",
+                categoria: "vacuna",
+                precio: 5500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853108/WhatsApp_Image_2026-01-31_at_2.38.18_PM_bola_de_lomo_ratdp5.jpg",
+                descripcion: "Corte magro y tierno. Excelente para milanesas.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Falda",
+                categoria: "vacuna",
+                precio: 5800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856671/falda_lgav7v.png",
+                descripcion: "Corte ideal para guisos y estofados.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Paleta",
+                categoria: "vacuna",
+                precio: 5200,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853102/paleta_jslvow.jpg",
+                descripcion: "Excelente para milanesas o matambre relleno.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Azotillo",
+                categoria: "vacuna",
+                precio: 4800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853094/azotillo_yvm7wc.jpg",
+                descripcion: "Corte congelado o para guisos de sabor potente.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Garrón",
+                categoria: "vacuna",
+                precio: 4500,
+                imagen: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80",
+                descripcion: "Ideal para puchero, locro o guisos lentos.",
+                badge: "Vacuna"
+            },
+            {
+                nombre: "Roast Beef",
+                categoria: "vacuna",
+                precio: 7500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853104/roast_beef_ivoaht.jpg",
+                descripcion: "Corte ideal para hornear o preparar en frío para fiestas.",
+                badge: "Vacuna"
+            },
+            
+            // ACHURAS
+            {
+                nombre: "Mollejas",
+                categoria: "achuras",
+                precio: 12000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856672/molleja_igbhls.png",
+                descripcion: "Suaves y tiernas. Un manjar gourmet.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Chorizo Especial",
+                categoria: "achuras",
+                precio: 7500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853097/ChatGPT_Image_11_feb_2026_05_41_53_choriso_p.m._uus3lt.png",
+                descripcion: "Receta premium, carne picada gruesa y especias.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Chorizo Parrillero",
+                categoria: "achuras",
+                precio: 5500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856670/choriso_parrillero_nfqq9k.png",
+                descripcion: "El clásico para la parrilla de los domingos.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Lengua",
+                categoria: "achuras",
+                precio: 5500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853100/lengua_hfa1rx.jpg",
+                descripcion: "Suave textura. Excelente para escabechar o vinagreta.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Tripa Gorda",
+                categoria: "achuras",
+                precio: 4000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853105/tripa_gorda_lurxhb.jpg",
+                descripcion: "Preparada lista para el relleno o parrilla.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Cremona",
+                categoria: "achuras",
+                precio: 4500,
+                imagen: "https://images.unsplash.com/photo-1626803775151-61d756612f97?w=600&q=80",
+                descripcion: "Salchicha gruesa tradicional.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Riñones",
+                categoria: "achuras",
+                precio: 3500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853104/ri%C3%B1on_eb9j4x.jpg",
+                descripcion: "Limpios y listos para guisos.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Corazón",
+                categoria: "achuras",
+                precio: 3800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853097/corazon_on1nbh.jpg",
+                descripcion: "Corte fuerte, ideal para a la parrilla con marinada.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Hígado",
+                categoria: "achuras",
+                precio: 3000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853098/higado_evc4mw.jpg",
+                descripcion: "Fresco, ideal para cebolladas o fritos.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Morcilla",
+                categoria: "achuras",
+                precio: 4500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853097/ChatGPT_Image_11_feb_2026_morcilla_17_42_47_pna3sw.png",
+                descripcion: "Dulce o salada, ideal para acompañar.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Chinchulines",
+                categoria: "achuras",
+                precio: 4200,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856670/chinchulin_ois7ii.png",
+                descripcion: "Lavados y listos. Crujientes al fuego.",
+                badge: "Achuras"
+            },
+            {
+                nombre: "Salchicha Parrillera",
+                categoria: "cerdo",
+                precio: 5500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853105/salchicha_parrillera_ndvgtu.jpg",
+                descripcion: "Fina y saborosa, perfecta para combinar.",
+                badge: "Achuras"
+            },
+            
+            // CERDO
+            {
+                nombre: "Jamón Crudo",
+                categoria: "cerdo",
+                precio: 12000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853098/jamon_crudo_rv3fqv.jpg",
+                descripcion: "Pieza entera curada, ideal para fiestas.",
+                badge: "Premium"
+            },
+            {
+                nombre: "Panceta",
+                categoria: "cerdo",
+                precio: 8500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856672/panceta_bt09os.png",
+                descripcion: "Fresca o ahumada. Crujiente a la parrilla.",
+                badge: "Cerdo"
+            },
+            {
+                nombre: "Matambrito de Cerdo",
+                categoria: "cerdo",
+                precio: 7500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853100/matambrito_de_cerdo_jucdzk.jpg",
+                descripcion: "Corte fino del cerdo. Rápido de cocinar.",
+                badge: "Cerdo"
+            },
+            {
+                nombre: "Bondiola",
+                categoria: "cerdo",
+                precio: 7800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853095/bondiola_qmktwl.jpg",
+                descripcion: "Lomo de cerdo, corte tierno y magro.",
+                badge: "Cerdo"
+            },
+            {
+                nombre: "Chorizo de Cerdo",
+                categoria: "cerdo",
+                precio: 6000,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770858370/choriso_de_cerdo_ichk84.png",
+                descripcion: "Salchicha fresca ideal para parrilla.",
+                badge: "Cerdo"
+            },
+            {
+                nombre: "Salchicha Parrillera",
+                categoria: "cerdo",
+                precio: 5500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853105/salchicha_parrillera_ndvgtu.jpg",
+                descripcion: "Fina y saborosa, perfecta para combinar.",
+                badge: "Cerdo"
+            },
+            {
+                nombre: "Costillar de Cerdo",
+                categoria: "cerdo",
+                precio: 5900,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856670/costilla_de_cerdo_dubhdq.png",
+                descripcion: "Ribs de cerdo. Crujiente con glaseado BBQ.",
+                badge: "Cerdo"
+            },
+            
+            // POLLO
+            {
+                nombre: "Pollo Entero",
+                categoria: "pollo",
+                precio: 3200,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856670/pollo_entero_pugojf.png",
+                descripcion: "Fresco y limpio, listo para la parrilla.",
+                badge: "Pollo"
+            },
+            {
+                nombre: "Pechito",
+                categoria: "pollo",
+                precio: 3500,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770853103/pechito_demfcj.jpg",
+                descripcion: "Magro y saludable. Para milanesas o sartén.",
+                badge: "Pollo"
+            },
+            {
+                nombre: "Suprema",
+                categoria: "pollo",
+                precio: 3800,
+                imagen: "https://res.cloudinary.com/dihwnqgwd/image/upload/v1770856670/suprema_z03gxh.png",
+                descripcion: "Filete de pechito grueso, sin hueso.",
+                badge: "Pollo"
+            }
+        ];
+
+        let productoActual = {};
+
+        // Renderizar productos
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            productos.forEach((producto, index) => {
+                const card = document.createElement('article');
+                card.className = 'product-card reveal';
+                card.setAttribute('data-category', producto.categoria);
+                
+                card.innerHTML = `
+                    <div class="product-image-container">
+                        <span class="product-badge">${producto.badge}</span>
+                        <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${producto.nombre}</h3>
+                        <p class="product-desc">${producto.descripcion}</p>
+                        <div class="shipping-tag"><i class="fas fa-shipping-fast"></i> Envíos Disponibles</div>
+                        <span class="product-price">$${producto.precio.toLocaleString('es-AR')} / kg</span>
+                        <div class="product-actions">
+                            <button class="btn-enviar-pedido" onclick="abrirModalPedido('${producto.nombre}', '${producto.categoria}', ${producto.precio})">
+                                <i class="fas fa-paper-plane"></i> Enviar pedido
+                            </button>
+                            <a href="https://wa.me/5493624657890?text=Hola,%20quiero%20${encodeURIComponent(producto.nombre)}" target="_blank" class="btn-consultar">
+                                <i class="fas fa-comments"></i> Consultar
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function renderPriceTable() {
+            const tbody = document.getElementById('priceTableBody');
+            tbody.innerHTML = '';
+            
+            const sortedProducts = [...productos].sort((a, b) => b.precio - a.precio);
+            
+            sortedProducts.forEach(producto => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${producto.nombre}</strong></td>
+                    <td>${producto.badge}</td>
+                    <td>$${producto.precio.toLocaleString('es-AR')}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function abrirModalPedido(nombre, tipo, precio) {
+            productoActual = { nombre, tipo, precio };
+            document.getElementById('modal-producto-nombre').textContent = nombre;
+            document.getElementById('modal-producto-tipo').textContent = tipo;
+            document.getElementById('modal-producto-precio').textContent = precio.toLocaleString('es-AR');
+            document.getElementById('precio').value = precio;
+            calcularTotal();
+            document.getElementById('pedido-modal').classList.add('active');
+        }
+
+        function cerrarModalPedido() {
+            document.getElementById('pedido-modal').classList.remove('active');
+        }
+
+        function calcularTotal() {
+            const cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
+            const precio = parseFloat(document.getElementById('precio').value) || 0;
+            const total = cantidad * precio;
+            document.querySelector('.total-amount').textContent = '$' + total.toLocaleString('es-AR');
+        }
+
+        document.getElementById('pedidoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const campos = ['nombre', 'telefono', 'direccion', 'cantidad'];
+            let isValid = true;
+            
+            campos.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const error = field.nextElementSibling;
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    if (error && error.classList.contains('error-message-pedido')) error.style.display = 'block';
+                    isValid = false;
+                } else {
+                    field.classList.remove('error');
+                    if (error && error.classList.contains('error-message-pedido')) error.style.display = 'none';
+                }
+            });
+
+            if (!isValid) return;
+
+            const datos = {
+                nombre: document.getElementById('nombre').value.trim(),
+                telefono: document.getElementById('telefono').value.trim(),
+                direccion: document.getElementById('direccion').value.trim(),
+                ubicacion: document.getElementById('ubicacion').value.trim(),
+                cantidad: document.getElementById('cantidad').value,
+                precio: document.getElementById('precio').value,
+                observaciones: document.getElementById('observaciones').value.trim()
+            };
+
+            const total = (parseFloat(datos.cantidad) * parseFloat(datos.precio)).toLocaleString('es-AR');
+            
+            const mensaje = `🥩 NUEVO PEDIDO – CARNICERÍA SANTA CATALINA
+
+👤 Nombre: ${datos.nombre}
+📞 Teléfono: ${datos.telefono}
+📍 Dirección: ${datos.direccion}
+🗺️ Ubicación: ${datos.ubicacion || 'No especificada'}
+
+🥩 Producto: ${productoActual.tipo}
+🔪 Corte: ${productoActual.nombre}
+⚖️ Cantidad: ${datos.cantidad} kg
+💲 Precio por kg: $${parseInt(datos.precio).toLocaleString('es-AR')}
+💰 Total: $${total}
+
+📝 Observaciones: ${datos.observaciones || 'Sin observaciones'}`;
+
+            window.open(`https://wa.me/5493624657890?text=${encodeURIComponent(mensaje)}`, '_blank');
+            cerrarModalPedido();
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('pedido-modal');
+            if (event.target == modal) cerrarModalPedido();
+        }
+
+        document.querySelectorAll('#pedidoForm input, #pedidoForm textarea').forEach(element => {
+            element.addEventListener('input', function() {
+                this.classList.remove('error');
+                const error = this.nextElementSibling;
+                if (error && error.classList.contains('error-message-pedido')) error.style.display = 'none';
+            });
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            renderPriceTable();
+            
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // Scroll reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Mobile menu
+            const burger = document.getElementById('burger-menu');
+            const navLinks = document.getElementById('nav-links');
+            if (burger && navLinks) {
+                burger.addEventListener('click', () => navLinks.classList.toggle('active'));
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => navLinks.classList.remove('active'));
+                });
+            }
+
+            // Hero scroll
+            const hero = document.getElementById('hero');
+            if (hero) {
+                hero.addEventListener('click', () => {
+                    setTimeout(() => slowScrollTo('#productos', 2000), 800);
+                });
+            }
+        });
+
+        function slowScrollTo(elementId, duration) {
+            const target = document.querySelector(elementId);
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function easeInOutQuad(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText === 'Todos')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => card.style.display = 'none', 400);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
